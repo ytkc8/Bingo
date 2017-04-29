@@ -1,7 +1,14 @@
 package com.myapp.main;
 
+import com.myapp.service.BingoCard;
+
 public class BINGO {
     public static void main(String arg[]) {
-        System.out.println("Hello, World!");
+        playBingoByCLI();
+    }
+
+    private static void playBingoByCLI() {
+        BingoCard bingoCard = new BingoCard();
+        bingoCard.printBoardContent();
     }
 }
