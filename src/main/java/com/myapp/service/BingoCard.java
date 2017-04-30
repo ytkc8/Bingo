@@ -43,7 +43,7 @@ public class BingoCard {
         return false;
     }
 
-    Optional<Cell> getCell(int vertical, int horizontal) {
+    public Optional<Cell> getCell(int vertical, int horizontal) {
         if (isExist(vertical, horizontal)) {
             return Optional.of(this.cells.get(horizontal * pieceCellNum + vertical));
         }
@@ -120,11 +120,15 @@ public class BingoCard {
         for (int i = 0; i < pieceCellNum; i++) {
             for (int j = 0; j < pieceCellNum; j++) {
                 getCell(j, i).ifPresent(cell -> {
-                    int fieldNum = cell.getFieldNum();
-                    if (fieldNum < 10) {
-                        System.out.print("[ " + fieldNum + "]\t");
+                    if (cell.isWasOpened()) {
+                        System.out.print("[  ]\t");
                     } else {
-                        System.out.print("[" + fieldNum + "]\t");
+                        int fieldNum = cell.getFieldNum();
+                        if (fieldNum < 10) {
+                            System.out.print("[ " + fieldNum + "]\t");
+                        } else {
+                            System.out.print("[" + fieldNum + "]\t");
+                        }
                     }
                 });
             }
